@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import AddWorkout from './screens/AddWorkout';
 import WorkoutHistory from './screens/WorkoutHistory';
@@ -53,17 +54,38 @@ export default function App() {
   return (
     <NavigationContainer>
       <Tab.Navigator>
-        <Tab.Screen name="Add Workout">
+        <Tab.Screen
+          name="Add Workout"
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <Ionicons name="add-circle-outline" size={size} color={color} />
+            ),
+          }}
+        >
           {(props) => (
             <AddWorkout {...props} addWorkout={addWorkout} unit={unit} />
           )}
         </Tab.Screen>
-        <Tab.Screen name="Workout History">
+        <Tab.Screen
+        name="Workout History"
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <Ionicons name="stats-chart-outline" size={size} color={color} />
+            ),
+          }}
+        >
           {(props) => (
             <WorkoutHistory {...props} workouts={workouts} setWorkouts={setWorkouts} unit={unit} />
           )}
         </Tab.Screen>
-        <Tab.Screen name="Settings">
+        <Tab.Screen
+          name="Settings"
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <Ionicons name="settings-outline" size={size} color={color} />
+            ),
+          }}
+        >
           {(props) => <Settings {...props} unit={unit} setUnit={setUnit} />}
         </Tab.Screen>
       </Tab.Navigator>
