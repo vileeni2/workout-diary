@@ -1,13 +1,27 @@
 import React from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import styles from '../styles/styles';
 
 const Settings = ({ unit, setUnit }) => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Choose unit:</Text>
-      <Button title="Kilometers" onPress={() => setUnit('kilometers')} />
-      <Button title="Miles" onPress={() => setUnit('miles')} />
+    <View style={styles.settingsContainer}>
+      <Text style={styles.settingsTitle}>Choose unit:</Text>
+      
+      <View style={styles.settingsButtonContainer}>
+        <TouchableOpacity
+          style={[styles.settingsButton, unit === 'kilometers' && styles.selectedSettingsButton]}
+          onPress={() => setUnit('kilometers')}
+        >
+          <Text style={styles.settingsButtonText}>Kilometers</Text>
+        </TouchableOpacity>
+        
+        <TouchableOpacity
+          style={[styles.settingsButton, unit === 'miles' && styles.selectedSettingsButton]}
+          onPress={() => setUnit('miles')}
+        >
+          <Text style={styles.settingsButtonText}>Miles</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };

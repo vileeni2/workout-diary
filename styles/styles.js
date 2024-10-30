@@ -52,6 +52,36 @@ const styles = StyleSheet.create({
     color: '#888',
     marginTop: 20,
   },
+  settingsContainer: {
+    flex: 1,
+    justifyContent: 'center', // Keskittää sisällön pystysuunnassa
+    alignItems: 'center', // Keskittää sisällön vaakasuunnassa
+  },
+  // Uusi title-tyyli Settings-näkymälle
+  settingsTitle: {
+    fontSize: 24, // Suurempi fonttikoko
+    fontWeight: 'bold',
+    marginBottom: 20, // Lisää tilaa otsikon alle
+  },
+  settingsButtonContainer: {
+    width: '100%', // Napit vievät koko leveys
+    flexDirection: 'row', // Asettaa napit vierekkäin
+    justifyContent: 'space-around', // Jakaa tilan napin ympärille
+  },
+  // Lisätään yksilöidyt tyylit napille
+  settingsButton: {
+    backgroundColor: '#e0e0e0', // Sininen taustaväri
+    borderRadius: 5, // Pyöristetyt kulmat
+    padding: 15, // Napin sisätilat
+    width: '45%', // Napit vievät 45% leveydestä
+  },
+  settingsButtonText: {
+    color: '#ffffff', // Valkoinen teksti
+    textAlign: 'center', // Keskittää tekstin
+  },
+  selectedSettingsButton: {
+    backgroundColor: '#28a745', // Tummempi sininen, kun valittu
+  },
 });
 
 export default styles;
