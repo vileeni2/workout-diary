@@ -62,6 +62,8 @@ const AddWorkout = ({ addWorkout, unit }) => {
         </View>
       )}
 
+      <View style={{ height: 35 }} />
+
       <Button title="Add Workout" onPress={handleAddWorkout} />
     </View>
   );

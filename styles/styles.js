@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     padding: 8,
     marginVertical: 8,
     borderRadius: 4,
-    height: 35,
+    height: 40,
   },
   picker: {
     height: 50,
