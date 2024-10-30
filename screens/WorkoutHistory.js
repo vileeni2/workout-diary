@@ -39,25 +39,33 @@ const WorkoutHistory = ({ workouts, setWorkouts, unit }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Total distances:</Text>
-      <Text>Running: {calculateTotalDistance('Running')} {unit}</Text>
-      <Text>Cycling: {calculateTotalDistance('Cycling')} {unit}</Text>
-      <Text>Skiing: {calculateTotalDistance('Skiing')} {unit}</Text>
+      <Text style={styles.distanceItem}>Running: {calculateTotalDistance('Running')} {unit}</Text>
+      <Text style={styles.distanceItem}>Cycling: {calculateTotalDistance('Cycling')} {unit}</Text>
+      <Text style={styles.distanceItem}>Skiing: {calculateTotalDistance('Skiing')} {unit}</Text>
 
       {/* Tyhjennä historia */}
-      <Button title="Clear History" onPress={clearHistory} color="#ff4444" />
+      <View style={styles.buttonContainer}>
+        <Button title="Clear History" onPress={clearHistory} color="#ff4444" />
+      </View>
 
-      <FlatList
-        data={workouts}
-        renderItem={({ item }) => (
-          <View style={styles.listItem}>
-            <Text>Type: {item.type}</Text>
-            <Text>Distance: {formatDistance(item.distance).toFixed(2)} {unit}</Text>
-            <Text>Duration: {item.duration} minutes</Text>
-            <Text>Date: {new Date(item.date).toLocaleDateString()}</Text>
-          </View>
-        )}
-        keyExtractor={(item, index) => index.toString()}
-      />
+      <Text style={styles.title}>Workouts:</Text>
+
+      {workouts.length === 0 ? (
+        <Text style={styles.placeholderText}>Your added workouts will appear here.</Text>
+      ) : (
+        <FlatList
+          data={workouts}
+          renderItem={({ item }) => (
+            <View style={styles.listItem}>
+              <Text>Type: {item.type}</Text>
+              <Text>Distance: {formatDistance(item.distance).toFixed(2)} {unit}</Text>
+              <Text>Duration: {item.duration} minutes</Text>
+              <Text>Date: {new Date(item.date).toLocaleDateString()}</Text>
+            </View>
+          )}
+          keyExtractor={(item, index) => index.toString()}
+        />
+      )}
     </View>
   );
 };

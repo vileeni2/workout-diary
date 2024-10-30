@@ -1,10 +1,9 @@
-// styles/styles.js
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
+    padding: 20,
     backgroundColor: '#f5f5f5',
   },
   label: {
@@ -29,6 +28,15 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 8,
+    marginBottom: 12,
+  },
+  distanceItem: {
+    fontSize: 16,
+    marginBottom: 8,
+  },
+  buttonContainer: {
+    marginTop: 10, // Lisää väli Clear History -napin yläpuolelle
+    marginBottom: 20, // Lisää hieman väliä FlatListin aloitukselle
   },
   listItem: {
     padding: 10,
@@ -37,6 +45,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 4,
     backgroundColor: '#fff',
+  },
+  placeholderText: {
+    fontSize: 20,
+    fontStyle: 'italic',
+    color: '#888',
+    marginTop: 20,
   },
 });
 
