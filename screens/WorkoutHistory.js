@@ -1,15 +1,21 @@
-// screens/WorkoutHistory.js
 import React from 'react';
 import { View, Text, FlatList, Button, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from '../styles/styles';
+import { toMiles, toKilometers } from '../constants/utils';
 
 const WorkoutHistory = ({ workouts, setWorkouts, unit }) => {
+
+  //Muunnetaan etäisyys valitun yksikön mukaan
+  const formatDistance = (distance) => {
+    return unit === 'miles' ? toMiles(distance) : distance;
+  };
+
   // Laskee eri treenityyppien yhteenlasketut matkat
   const calculateTotalDistance = (type) =>
     workouts
       .filter(workout => workout.type === type)
-      .reduce((sum, workout) => sum + workout.distance, 0)
+      .reduce((sum, workout) => sum + formatDistance(workout.distance), 0)
       .toFixed(2);
 
   // Tyhjentää treenihistorian
@@ -37,7 +43,7 @@ const WorkoutHistory = ({ workouts, setWorkouts, unit }) => {
       <Text>Cycling: {calculateTotalDistance('Cycling')} {unit}</Text>
       <Text>Skiing: {calculateTotalDistance('Skiing')} {unit}</Text>
 
-      {/* Lisää Tyhjennä Historia -painike */}
+      {/* Tyhjennä historia */}
       <Button title="Clear History" onPress={clearHistory} color="#ff4444" />
 
       <FlatList
@@ -45,7 +51,7 @@ const WorkoutHistory = ({ workouts, setWorkouts, unit }) => {
         renderItem={({ item }) => (
           <View style={styles.listItem}>
             <Text>Type: {item.type}</Text>
-            <Text>Distance: {item.distance} {unit}</Text>
+            <Text>Distance: {formatDistance(item.distance).toFixed(2)} {unit}</Text>
             <Text>Duration: {item.duration} minutes</Text>
             <Text>Date: {new Date(item.date).toLocaleDateString()}</Text>
           </View>

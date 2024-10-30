@@ -6,6 +6,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import AddWorkout from './screens/AddWorkout';
 import WorkoutHistory from './screens/WorkoutHistory';
 import Settings from './screens/Settings';
+import { toMiles, toKilometers } from './constants/utils';
 
 const Tab = createBottomTabNavigator();
 
@@ -35,7 +36,18 @@ export default function App() {
   }, [unit]);
 
   const addWorkout = (workout) => {
-    setWorkouts([...workouts, workout]);
+
+    let distanceInKm;
+
+    // Muunnetaan etäisyys kilometreiksi jos yksikkö on mailit
+    if(unit === 'miles') {
+      distanceInKm = toKilometers(workout.distance);
+    } else {
+      distanceInKm = workout.distance;
+    }
+
+    // Tallennetaan kilometreinä
+    setWorkouts([...workouts, { ...workout, distance: distanceInKm }]);
   };
 
   return (
